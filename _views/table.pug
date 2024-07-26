@@ -8,7 +8,10 @@ html(lang="it")
     body
         include default/head.pug  
         h2#time.text-center.m-5 time...
-        +upload('pippo')(attrButton="btn-danger")(attrIcona="fa-2x").me-5
+        .d-flex.justify-content-around.w-75.mx-auto
+            +upload(classButton="btn-warning")
+            +upload('modificato','sdfrf')(classButton="btn-danger",classIcona="fa-2x")
+            +upload
         //-+upload
         br
         br

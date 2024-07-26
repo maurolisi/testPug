@@ -14,7 +14,7 @@ mixin tdAuto(item,campi)
     td.align-middle #{item[campi[i]]}
 
 
-mixin upload(testo="upload", id="file", fnc="alert('funzione non creata')")
+mixin upload(testo="upload", id="file", fnc="alert('Nessuna Funzione nel 3° attributo')")
   style().
     input[type="file"]::file-selector-button {
       cursor: pointer;
@@ -22,9 +22,11 @@ mixin upload(testo="upload", id="file", fnc="alert('funzione non creata')")
   div(style="display:inline-flex!important;")&attributes(attributes)
     div(style="position:relative;") 
       input(id=id type="file" onchange=fnc style="font-size: 1.3em;width:100%;position:absolute;opacity:0")
-      button.btn.btn-success(class!=attributes.attrButton) 
-        i.fas.fa-cloud-upload-alt.me-2(class!=attributes.attrIcona)
+      button.btn.btn-success(class!=attributes.classButton style!=attributes.styleButton) 
+        i.fas.fa-cloud-upload-alt.me-2(class!=attributes.classIcona style!=attributes.styleIcona)
         | #{testo}
+  //- script.      
+  //-   $(alert('#{attributes.attrIcona}'))
 
 mixin table(rs)
     -var campi=['Serie','Stagione_Episodio','TitoloOriginale','TitoloItaliano'];
