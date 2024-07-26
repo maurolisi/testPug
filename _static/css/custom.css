@@ -1,0 +1,38 @@
+﻿/* body {text-transform: uppercase !important;}
+input{text-transform:uppercase !important;}
+textarea{text-transform:uppercase !important;}
+div{text-transform: uppercase !important;}
+button{text-transform: uppercase !important;}
+select{text-transform: uppercase !important;} */
+
+.cursor-pointer {
+  cursor: pointer;
+}
+.c-p {
+  cursor: pointer;
+}
+.icobtn {
+  margin-right: 10px;
+}
+
+#BTNMenu {
+  width: 100%;
+  margin: 15px auto;
+}
+
+#BTNMenu > button,
+#BTNMenu > div > button {
+  text-align: left;
+}
+@media (max-width: 992px) {
+  #pass {
+    margin-top: 10px;
+  }
+  .BTNUtente {
+    width: 100%;
+    text-align: left;
+  }
+  .BTNUtente > button {
+    text-align: left;
+  }
+}

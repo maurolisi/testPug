@@ -1,0 +1,67 @@
+
+doctype html
+html(lang="it")
+    head
+        include mixin.pug  
+        include default/script.pug  
+        title= title
+    body
+        include default/head.pug  
+        h2#time.text-center.m-5 time...
+        +upload('pippo')(attrButton="btn-danger")(attrIcona="fa-2x").me-5
+        //-+upload
+        br
+        br
+        .row.w-100.mx-auto
+            //- .col
+            //-     h5 tabella dal controller
+            //-     table.table.table-striped
+            //-         !=tbl
+            .col
+                h5 tabella dal file pug (mixin)
+                +table(rs)
+    script.  
+        $(function(){
+            var start=#{start}
+            var end= Date.now();
+            $('#time').html('time: '+(end-start))
+            })
+        bbox=(id, act)=> {
+            $(".righe").removeClass("table-danger");
+            $(".righe").removeClass("table-warning");
+            $(".riga_" + id).addClass("table-warning");
+            var message = "";
+            message +=
+            '<div class="d-flex justify-content-center"><div class="spinner-border"></div></div>';
+            var dialog = bootbox.dialog({
+            title: act,
+            message: message,
+            size: "large",
+            });
+            $.ajax({
+            cache: false,
+            url: "/bbox?id=" + id + "&act=" + act,
+            success: function (r) {
+                dialog.init(function () {
+                dialog.find(".bootbox-body").html(r);
+                });
+            },
+            });
+        }
+
+
+
+-// tabella da file pug:
+
+//-    table.table.table-striped.w-75.mx-auto
+//-      each item in rs
+//-       tr(id='riga_' + item.NIndividuale)
+//-        td.align-middle #{item.Cognome}
+//-        td.align-middle #{item.Nome}
+//-        td.align-middle #{item.Data_Nascita}
+//-        td.align-middle #{item.Qualifica}
+//-        td.align-middle #{item.MacroUnita}
+//-        td(onclick="alert('pippo')" style="width:10px")
+//-         i.fas.fa-user.fa-2x.text-danger.c-p
+
+

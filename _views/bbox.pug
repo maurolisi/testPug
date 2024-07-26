@@ -1,0 +1,84 @@
+.container-fluid
+-if(act=='view'){
+    .text-center.m-1.mb-3
+        img(src=rs.FotoSuStic, width="320", alt="foto")
+    .row
+        .form-group.col-3 
+            small='Sigla'
+            .form-control=rs.Sigla
+        .form-group.col 
+            small='Serie'
+            .form-control=rs.Serie 
+        .form-group.col 
+            small='Stagione-Episodio'
+            .form-control=rs.Stagione_Episodio
+    .row
+        .form-group.col 
+            small='Titolo Originale'
+            .form-control=rs.TitoloOriginale
+        .form-group.col 
+            small='Titolo Italiano'
+            .form-control=rs.TitoloItaliano
+    .row
+        .form-group.col 
+            small='Riassunto'
+            textarea(rows="6").form-control=rs.Riassunto
+    .d-flex.flex-row-reverse.w-75.mx-auto.m-1
+        button(onclick="closeR()").btn.btn-dark chiudi
+-}else{
+    .text-center.m-1.mb-3
+        img(src=rs.FotoSuStic, width="320", alt="foto")
+    form#formData
+      .row
+        .form-group.col-3 
+          small='Sigla'
+          input(name="Sigla" value=rs.Sigla).form-control
+        .form-group.col 
+          small='Serie'
+          input(name="Serie", value= rs.Serie).form-control
+        .form-group.col 
+          small='Stagione-Episodio'
+          input(name="Serie", value= rs.Stagione_Episodio).form-control
+      .row 
+        .form-group.col 
+          small='TitoloOriginale'
+          input(name="Titolo Originale", value= rs.TitoloOriginale).form-control
+        .form-group.col 
+          small='Titolo Italiano'
+          input(name="TitoloItaliano", value= rs.TitoloItaliano).form-control
+      .row 
+        .form-group.col 
+          small='Riassunto'
+          textarea(name="Riassunto", rows="6").form-control #{rs.Riassunto}
+    .d-flex.justify-content-between.w-75.mx-auto.m-1
+      button(type="button" onclick="closeR()").btn.btn-dark chiudi
+      button(type="button" onclick="save('"+rs.id+"')").btn.btn-success salva
+-}
+
+script.
+  var titolo = "!{rs.TitoloItaliano}";
+  titolo = titolo.replaceAll("'", "'");
+  $(function () {
+    $(".modal-title").html(titolo);
+    $(".modal-title").addClass("text-center w-100");
+  });
+  function save(id) {
+    var data = $("#formData").serialize();
+    bootbox
+      .alert("saved id=" + id + "<br>dati:<br>" + data)
+      .find(".modal-content")
+      .css({
+        "background-color": "#FFF3CD",
+        "margin-top": "80px",
+        "margin-left": "-8px",
+        "box-shadow": "5px 5px 10px",
+        "word-wrap": "break-word",
+      });
+
+    $("#riga_" + id).addClass("table-danger");
+  }
+  function closeR() {
+    $(".righe").removeClass("table-danger");
+    $(".righe").removeClass("table-warning");
+    bootbox.hideAll();
+  }

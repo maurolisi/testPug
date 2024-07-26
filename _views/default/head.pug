@@ -1,0 +1,30 @@
+nav(style="background-color: #921b32").m-0.navbar.sticky-top.navbar-expand-lg
+	a(href="#").p-0.text-success.navbar-brand
+		img(style="width: 170px; margin: 3px", alt="enterprise" ,src="image/uss-enterprise-4453685_1280.webp")
+		//img.image(src="Scan-Anim.gif")
+	button(type="button",data-toggle="collapse",data-target=".collassabile",aria-expanded="false"
+        ,aria-label="Toggle navigation").navbar-toggler
+		i.fas.fa-bars
+	div.collapse.navbar-collapse.collassabile
+		div.text-white.text-center.m-auto applicazione di esempio
+	div(role="group").BTNUtente.btn-group
+		button(data-toggle="dropdown",aria-haspopup="true",aria-expanded="false")#Utente.btn.btn-success.dropdown-toggle
+			i.icobtn.fas.fa-users 
+			span utente
+		div(aria-labelledby="Utente").dropdown-menu.dropdown-menu-right
+			h4.dropdown-header Utente
+			button(onclick="Profile()", type="button" ).dropdown-item
+				i.icobtn.fas.fa-id-card
+				span Profile
+			div.dropdown-divider
+			button(onclick="logout()", type="button" ).dropdown-item
+				i.icobtn.fas.fa-sign-out-alt
+				span logout
+	script.
+		 function Profile(){
+			bootbox.alert('Profile');
+		 }
+		 function logout(){
+			bootbox.alert('logout');
+		 }
+

@@ -1,0 +1,40 @@
+mixin pet(name)
+  li.pet= name
+
+mixin button(text='GO')
+  button.btn.btn-sm.btn-info&attributes(attributes)
+    if block
+      block
+    else 
+      i.fas.fa-circle.mr-1
+      span=text
+
+mixin tdAuto(item,campi)
+  -for(i=0;i<campi.length;i++)
+    td.align-middle #{item[campi[i]]}
+
+
+mixin upload(testo="upload", id="file", fnc="alert('funzione non creata')")
+  style().
+    input[type="file"]::file-selector-button {
+      cursor: pointer;
+    }
+  div(style="display:inline-flex!important;")&attributes(attributes)
+    div(style="position:relative;") 
+      input(id=id type="file" onchange=fnc style="font-size: 1.3em;width:100%;position:absolute;opacity:0")
+      button.btn.btn-success(class!=attributes.attrButton) 
+        i.fas.fa-cloud-upload-alt.me-2(class!=attributes.attrIcona)
+        | #{testo}
+
+mixin table(rs)
+    -var campi=['Serie','Stagione_Episodio','TitoloOriginale','TitoloItaliano'];
+    table.table.table-striped
+        each item in rs
+            tr(class="riga_" + item.id ).righe
+                td 
+                    img(src=item.FotoSuStic width="160")
+                +tdAuto(item,campi)
+                td.text-center.align-middle
+                    i(onclick="bbox('"+item.id+"','view')").fas.fa-search.fa-2x.text-success.c-p
+                td.text-center.align-middle
+                    i(onclick="bbox('"+item.id+"','edit')").fas.fa-edit.fa-2x.text-info.c-p
